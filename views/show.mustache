@@ -1,0 +1,31 @@
+{{>activate}}
+
+<div id="fetch">
+  <a href="/{{me}}/fetch">fetch</a>
+</div>
+
+<div id="post">
+  <form action="/{{me}}/post" method="post">
+    <textarea name="text"></textarea>
+    <input type="password" name="password" />
+    <input type="submit" />
+  </form>
+</div>
+
+<div id="messages">
+  <h2>Messages</h2>
+  <ul>
+    {{#messages}}
+      <li>{{parsed_time}} {{address}} > {{text}}</li>
+    {{/messages}}
+  </ul>
+</div>
+
+<div id="following">
+  <h2>Following</h2>
+  <ul>
+    {{#following}}
+      <li>{{nick}} > <a href="/{{address}}/show">{{address}}</a></li>
+    {{/following}}
+  </ul>
+</div>
