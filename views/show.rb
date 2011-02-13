@@ -13,10 +13,12 @@ class ThimblSinging
         @following
       end
       
-      def parsed_time
-        time = self['time']
-        # time = Time.utc( time[0,4], time[4,2], time[6,2], time[8,2], time[10,2], time[12,2] )
-        #         return time.strftime '%Y-%m-%d %H:%m'
+      def time_parsed
+        time = self['time'].strftime '%a, %e %b at %H:%M:%S'
+      end
+      
+      def last_fetch_parsed
+        @last_fetch.strftime '%a, %e %b at %H:%M:%S'
       end
     end
   end

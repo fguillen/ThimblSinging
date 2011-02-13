@@ -1,0 +1,146 @@
+{ "me" : "me@thimbl.net",
+  "plans" : { "dk@telekommunisten.org" : { "address" : "dk@telekommunisten.org",
+          "following" : [ { "address" : "as@telekommunisten.org",
+                "nick" : "anthony"
+              },
+              { "address" : "ed@ping01.stura.uni-weimar.de",
+                "nick" : "bernd"
+              },
+              { "address" : "meschugge@ping01.stura.uni-weimar.de",
+                "nick" : "meschugge"
+              },
+              { "address" : "mike@mikepearce.net",
+                "nick" : "mike"
+              },
+              { "address" : "ww@river.styx.org",
+                "nick" : "ww"
+              },
+              { "address" : "spaetz@spaetz.dyndns.org",
+                "nick" : "spaetz"
+              },
+              { "address" : "marcell@telekommunisten.org",
+                "nick" : "marcell"
+              },
+              { "address" : "rw@telekommunisten.org",
+                "nick" : "dk"
+              },
+              { "address" : "naikodemus@telekommunisten.org",
+                "nick" : "n"
+              }
+            ],
+          "messages" : [ { "address" : "dk@telekommunisten.org",
+                "text" : "@bernd, would be cool to inegrate thimbl in http://bau-ha.us\\!",
+                "time" : "20101129060335"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "back in berlin, call +31108208622 to here the noise created in Rotterdam",
+                "time" : "20101206065528"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "What is thimbl's equivilent of #FF? In any case, follow the earliest Thimbl users: ossa@nummo.strangled.net and ed@ping01.stura.uni-weimar.de",
+                "time" : "20101206070601"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@mark, would it be better if the posts where sorted by data, and not user?",
+                "time" : "20101207034655"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@mark, not using the version I am, seems to sort by user then date, instead of just date, I tried to pull in the latest from your repo, but then the thimbl executable vanished.",
+                "time" : "20101207080308"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@mark, ok, using climbl now, posts are sorted in order. great. can't we keep the command as 'thimbl' though? it's nicer and more obvious (principal of least surprise)",
+                "time" : "20101207083809"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@mark, also a feature request, can we have a 'read' command that combines fetch+print? and unfollow would be nice (like when you make a typo in an address)",
+                "time" : "20101207084025"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@mark, or perhaps follow would first try to finger the account before adding it, to verify it's a real thimbl account?",
+                "time" : "20101207084116"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@mark, just one more thing! perhaps convert dates to GMT? Otherwise sorting is affected by timezones",
+                "time" : "20101207084249"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@mark, never mind about unfollow, I just read your blog ;)",
+                "time" : "20101207091343"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@mark, if we store the dats in GMT/UTC in the .plan, then timezones are no longer an issue",
+                "time" : "20101207130325"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@mark, great updates, your lates has been merged into the Telekommunisten repos",
+                "time" : "20101208104508"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "I'm working on a new option parser for node called Operetta, will release soon",
+                "time" : "20101214165553"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "just launched the new thimbl website. http://www.thimbl.net",
+                "time" : "20110125065111"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@spaetz: first response ;)",
+                "time" : "20110201143140"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "@ed: have you tried frozen soup?",
+                "time" : "20110201143220"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "Hello from the thimbl workshop",
+                "time" : "20110202152339"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "Tonight @cbase: monochrom & Telekommunisten run DISMALWARE an antivirus toolkit for your liberal Western brain http://bit.ly/dismalware",
+                "time" : "20110203121940"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "If rocker hair and skinny jeans could make comebacks, why not Finger? http://ping.fm/3C95t",
+                "time" : "20110203162208"
+              },
+              { "address" : "dk@telekommunisten.org",
+                "text" : "http://kleiner.posterous.com/last-to-chance-to-vote-for-thimbl-we-need-you",
+                "time" : "20110204145719"
+              }
+            ],
+          "name" : "Dmytri Kleiner",
+          "properties" : { "email" : "dk@telekommunisten.net",
+              "mobile" : "",
+              "website" : "http://www.thimbl.net"
+            },
+          "replies" : {  }
+        },
+      "me@thimbl.net" : { "address" : "me@thimbl.net",
+          "following" : [ { "address" : "dk@telekommunisten.org",
+                "nick" : "dk"
+              } ],
+          "messages" : [ { "address" : "me@thimbl.net",
+                "text" : "Here I am",
+                "time" : "20110131002202"
+              },
+              { "address" : "me@thimbl.net",
+                "text" : "testing :)",
+                "time" : "20110205150637"
+              },
+              { "text" : "testing 2",
+                "time" : "20110205151623"
+              },
+              { "text" : "testing 3",
+                "time" : "20110205152247"
+              }
+            ],
+          "name" : "Fernando Guillen",
+          "properties" : { "email" : "fguillen.mail@gmail.com",
+              "mobile" : "N/A",
+              "website" : "fernandoguillen.info"
+            },
+          "replies" : {  }
+        }
+    }
+}

@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'sinatra/base'
 require 'thimbl'
 require 'mustache/sinatra'
@@ -5,68 +6,94 @@ require 'mustache/sinatra'
 ROOT_PATH = File.dirname(__FILE__)
 
 class ThimblSinging < Sinatra::Base
-  FileUtils.mkdir( "#{ROOT_PATH}/caches" )  unless File.exists? "#{ROOT_PATH}/caches"
-  
   register Mustache::Sinatra
   set :mustache, {
-    :views     => 'views/',
-    :templates => 'views/'
+    :views     => "#{File.dirname(__FILE__)}/views/",
+    :templates => "#{File.dirname(__FILE__)}/views/"
   }
   
+  # activate
   get '/' do
     mustache :new
   end
   
+  # redirect to show
   get '/show' do
-    redirect "/#{params[:thimbl_address]}/show"
+    redirect "/#{params[:thimbl_user]}/show"
   end
 
-  get '/:thimbl_address/show' do
-    thimbl = charge_thimbl params[:thimbl_address]
+  # show
+  get '/:thimbl_user/show' do
+    thimbl = ThimblSinging.charge_thimbl params[:thimbl_user]
     
-    @me = thimbl.data['me']
+    @me = thimbl.me
     @messages = thimbl.messages.reverse
     @following = thimbl.following
+    @last_fetch = File.atime "#{ThimblSinging.caches_path}/#{ThimblSinging.to_filename params[:thimbl_user]}.json"
     
     mustache :show
   end
   
-  get '/:thimbl_address/fetch' do
-    thimbl = Thimbl::Base.new 'address' => params[:thimbl_address]
+  # fetch
+  get '/:thimbl_user/fetch' do
+    thimbl = Thimbl::Base.new 'address' => params[:thimbl_user]
     thimbl.fetch  # me plan
     thimbl.fetch  # me following plans
-    save_cache( thimbl.me, thimbl.data )
+    ThimblSinging.save_cache( thimbl.me, thimbl.data )
     
-    redirect "/#{params[:thimbl_address]}/show"
+    redirect "/#{params[:thimbl_user]}/show"
   end
   
-  def charge_thimbl( thimbl_address )
-    thimbl = Thimbl::Base.new 'address' => thimbl_address
-    if data = load_cache( thimbl_address )
+  # post
+  post '/:thimbl_user/post' do
+    thimbl = ThimblSinging.charge_thimbl params[:thimbl_user]
+    thimbl.post!( params[:text], params[:password] )
+    ThimblSinging.save_cache( thimbl.me, thimbl.data )
+    
+    redirect "/#{params[:thimbl_user]}/show"
+  end
+  
+  # follow
+  post '/:thimbl_user/follow' do
+    thimbl = ThimblSinging.charge_thimbl params[:thimbl_user]
+    thimbl.follow!( params[:nick], params[:address], params[:password] )
+    thimbl.fetch
+    ThimblSinging.save_cache( thimbl.me, thimbl.data )
+    
+    redirect "/#{params[:thimbl_user]}/show"
+  end
+  
+  def self.charge_thimbl( thimbl_user )
+    thimbl = Thimbl::Base.new 'address' => thimbl_user
+    if data = ThimblSinging.load_cache( thimbl_user )
       thimbl.data = data
     else 
       thimbl.fetch  # me plan
       thimbl.fetch  # me following plans
-      save_cache( thimbl.me, thimbl.data )
+      ThimblSinging.save_cache( thimbl.me, thimbl.data )
     end
     
     return thimbl
   end
 
   # TODO: use better slugger
-  def to_filename( thimbl_address )
-    thimbl_address.gsub( '@', '_at_' )
+  def self.to_filename( thimbl_user )
+    thimbl_user.gsub( '@', '_at_' )
   end
   
-  def load_cache( thimbl_address )
-    cache_file = "#{ROOT_PATH}/caches/#{to_filename thimbl_address}.json"
-    return nil  unless File.exists? cache_file
-    JSON.load File.read cache_file
+  def self.load_cache( thimbl_user )
+    cache_path = "#{ThimblSinging.caches_path}/#{ThimblSinging.to_filename thimbl_user}.json"
+    return nil  unless File.exists? cache_path
+    JSON.load File.read cache_path
   end
 
+  def self.save_cache( thimbl_user, data )
+    FileUtils.mkdir( ThimblSinging.caches_path )  unless File.exists? ThimblSinging.caches_path
+    cache_path = "#{ThimblSinging.caches_path}/#{ThimblSinging.to_filename thimbl_user}.json"
+    File.open( cache_path, 'w' ) { |f| f.write data.to_json }
+  end
   
-  def save_cache( thimbl_address, data )
-    cache_file = "#{ROOT_PATH}/caches/#{to_filename thimbl_address}.json"
-    File.open( cache_file, 'w' ) { |f| f.write data.to_json }
+  def self.caches_path
+    "#{ROOT_PATH}/caches"
   end
 end
