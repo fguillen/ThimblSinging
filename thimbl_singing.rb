@@ -19,11 +19,18 @@ class ThimblSinging < Sinatra::Base
   
   # redirect to show
   get '/show' do
-    redirect "/#{params[:thimbl_user]}/show"
+    redirect "/#{params[:thimbl_user]}"
+  end
+  
+  # show.json
+  get %r{/(.*)\.json} do |thimbl_user|
+    thimbl = ThimblSinging.charge_thimbl thimbl_user
+    content_type :json
+    thimbl.plan.to_json
   end
 
   # show
-  get '/:thimbl_user/show' do
+  get '/:thimbl_user' do
     thimbl = ThimblSinging.charge_thimbl params[:thimbl_user]
     
     @me = thimbl.me
@@ -41,7 +48,7 @@ class ThimblSinging < Sinatra::Base
     thimbl.fetch  # me following plans
     ThimblSinging.save_cache( thimbl.me, thimbl.data )
     
-    redirect "/#{params[:thimbl_user]}/show"
+    redirect "/#{params[:thimbl_user]}"
   end
   
   # post
@@ -50,7 +57,7 @@ class ThimblSinging < Sinatra::Base
     thimbl.post!( params[:text], params[:password] )
     ThimblSinging.save_cache( thimbl.me, thimbl.data )
     
-    redirect "/#{params[:thimbl_user]}/show"
+    redirect "/#{params[:thimbl_user]}"
   end
   
   # follow
@@ -60,7 +67,7 @@ class ThimblSinging < Sinatra::Base
     thimbl.fetch
     ThimblSinging.save_cache( thimbl.me, thimbl.data )
     
-    redirect "/#{params[:thimbl_user]}/show"
+    redirect "/#{params[:thimbl_user]}"
   end
   
   def self.charge_thimbl( thimbl_user )

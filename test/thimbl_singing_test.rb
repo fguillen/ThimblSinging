@@ -25,7 +25,7 @@ class ThimblSingingTest < Test::Unit::TestCase
   def test_show_with_out_parameter
     visit '/show?thimbl_user=me@thimbl.net'
     assert last_response.redirect?
-    assert_match "/me@thimbl.net/show", last_response.location
+    assert_match "/me@thimbl.net", last_response.location
   end
 
   def test_show
@@ -33,7 +33,7 @@ class ThimblSingingTest < Test::Unit::TestCase
     thimbl.data = JSON.load File.read "#{File.dirname(__FILE__)}/fixtures/me_at_thimbl.net.json"
     ThimblSinging.expects( :charge_thimbl ).with( 'me@thimbl.net' ).returns( thimbl )
     File.expects( :atime ).returns( Time.utc 2010, 1, 2, 3, 4, 5 )
-    visit '/me@thimbl.net/show'
+    visit '/me@thimbl.net'
     
     # activate form
     assert_have_selector 'div#activate > form input[name=thimbl_user]'
@@ -61,6 +61,18 @@ class ThimblSingingTest < Test::Unit::TestCase
     assert_have_selector 'div#followings > div#add-following > form input[name=nick]'
   end
   
+  def test_show_json
+    data = { 'a' => 1 }
+    thimbl = Thimbl::Base.new
+    ThimblSinging.expects( :charge_thimbl ).with( 'me@thimbl.net' ).returns( thimbl )
+    thimbl.stubs( :plan ).returns( data )
+    
+    get '/me@thimbl.net.json'
+    
+    assert_equal 'application/json', last_response.content_type
+    assert_equal( data, JSON.load( last_response.body ) )
+  end
+  
   def test_fetch
     Thimbl::Base.any_instance.expects( :fetch ).twice
     ThimblSinging.expects( :save_cache )
@@ -68,7 +80,7 @@ class ThimblSingingTest < Test::Unit::TestCase
     get '/me@thimbl.net/fetch'
     
     assert last_response.redirect?
-    assert_match "/me@thimbl.net/show", last_response.location
+    assert_match "/me@thimbl.net", last_response.location
   end
   
   def test_post
@@ -80,7 +92,7 @@ class ThimblSingingTest < Test::Unit::TestCase
     post( '/me@thimbl.net/post', :text => 'message', :password => 'pass' )
     
     assert last_response.redirect?
-    assert_match "/me@thimbl.net/show", last_response.location
+    assert_match "/me@thimbl.net", last_response.location
   end
   
   def test_follow
@@ -93,7 +105,7 @@ class ThimblSingingTest < Test::Unit::TestCase
     post( '/me@thimbl.net/follow', :nick => 'nick', :address => 'nick@thimbl.net', :password => 'pass' )
     
     assert last_response.redirect?
-    assert_match "/me@thimbl.net/show", last_response.location
+    assert_match "/me@thimbl.net", last_response.location
   end
   
   def test_to_filename
