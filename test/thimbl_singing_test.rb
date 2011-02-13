@@ -32,26 +32,26 @@ class ThimblSingingTest < Test::Unit::TestCase
     thimbl = Thimbl::Base.new
     thimbl.data = JSON.load File.read "#{File.dirname(__FILE__)}/fixtures/me_at_thimbl.net.json"
     ThimblSinging.expects( :charge_thimbl ).with( 'me@thimbl.net' ).returns( thimbl )
-    File.expects( :atime ).returns( Time.utc 2010, 1, 2, 3, 4, 5 )
+    File.expects( :mtime ).returns( Time.utc 2010, 1, 2, 3, 4, 5 )
     visit '/me@thimbl.net'
     
     # activate form
     assert_have_selector 'div#activate > form input[name=thimbl_user]'
     
     # title
-    assert_have_selector 'h1', :content => 'me@thimbl.net'
+    # assert_have_selector 'h1', :content => 'me@thimbl.net'
     
     # last update data
-    assert_contain 'updated last time in Sat, 2 Jan at 03:04:05'
+    assert_contain 'updated last time in Sat, 2 Jan at 03:04'
     
     # post form
     assert_have_selector 'div#post > form textarea[name=text]'
     
     # messages
     assert_have_selector 'div#messages > .message > .time', :content => 'Wed,  2 Feb at 15:23:39'
-    assert_have_selector 'div#messages > .message > .address', :content => 'dk@telekommunisten.org'
+    assert_have_selector 'div#messages > .message > .address > a', :content => 'dk@telekommunisten.org'
     assert_have_selector 'div#messages > .message > .text', :content => 'Hello from the thimbl workshop'
-    assert_contain 'On Wed, 2 Feb at 15:23:39 dk@telekommunisten.org said Hello from the thimbl workshop'
+    assert_contain 'Hello from the thimbl workshop by dk@telekommunisten.org at Wed, 2 Feb at 15:23:39'
     
     # followings
     assert_have_selector 'div#followings > .following > .nick', :content => 'dk'

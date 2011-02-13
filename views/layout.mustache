@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      Thimbl Singing
-    </title>
-    <style>
-      body { background: #eee; }
-      li { list-style: none !important; }
-    </style>
+    <title>Thimbl Singing</title>
+    <link rel="stylesheet" type="text/css" href="/reset.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
   </head>
   <body>
     <div id="main">
+      <div id="header">
+        <h1>Thimbl Singing</h1>
+      </div>
+      
       {{{yield}}}
+      
+      <div id="footer">
+        <p><a href="http://thimbl.net">Thimbl</a> is a free, open source, distributed micro-blogging platform.</p>
+        <p>
+          <a href="http://thimblsigning.fernandoguillen.info">ThimblSinging</a> is another experimental project by 
+          <a href="http://fernandoguillen.info">Fernando Guillen</a>.
+        </p>
+        <p>Fork me at <a href="https://github.com/fguillen/ThimblSinging">ThimblSinging github repository</a>.</p>
+      </div>
     </div>
+    
   </body>
 </html>

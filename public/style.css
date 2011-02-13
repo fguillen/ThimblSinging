@@ -1,0 +1,252 @@
+/*
+1: 1b1e26
+2: caad99
+3: b6d051
+4: 70a99a
+5: 2f6d7a
+*/
+
+body { 
+font-family: 'Georgia', 'Times New Roman', serif;
+background: #fff; 
+color: #1b1e26;
+}
+
+h2 {
+font-size: 40px;
+margin: 10px 0px 10px 0px;
+}
+
+h3 {
+font-size: 20px;
+margin: 10px 0px 10px 0px;
+}
+
+#main{
+width: 900px;
+margin: 0 auto;
+}
+
+input[type=text],
+input[type=password]{
+border-left: 0px;
+border-right: 0px;
+border-top: 0px;
+border-bottom: 1px solid #1b1e26;
+background: transparent;
+padding: 5px 5px 0px 5px;
+font-weight: bold;
+font-size: 24px;
+}
+
+textarea {
+border: 1px solid #1b1e26;
+}
+
+input[type=submit] {
+	width: auto;
+	padding: 5px 15px;
+	background: #1b1e26;
+	border: 0;
+	font-size: 14px;
+	color: #FFFFFF;
+-webkit-border-radius: 5px;  
+    -moz-border-radius: 5px;
+	}
+
+
+
+#header h1{
+text-align: center;
+font-size: 80px;
+margin-top: 10px;
+}
+
+#activate {
+text-align: center;
+background: #b6d051;
+padding: 10px;
+margin-bottom: 10px;
+}
+
+#activate h2{
+display: none;
+}
+
+#activate input[type=text] {
+width: 400px;
+margin: 0px 10px;
+}
+
+#fetch {
+text-align: center;
+background: #b6d051;
+padding: 5px;
+margin-bottom: 10px;
+}
+
+#fetch span{
+font-weight: bold;
+}
+
+#fetch a{
+color: #2f6d7a;
+text-decoration: none;
+}
+
+
+#fetch a:hover{
+text-decoration: underline;
+}
+
+#col-left{
+
+width: 450px;
+float: left;
+
+}
+
+#post {
+width: 100%;
+}
+
+#post textarea{
+box-shadow: rgba(0,0,0, 0.9) 0px 0px 8px;  
+    -moz-box-shadow: rgba(0,0,0, 0.9) 0px 0px 8px;  
+    -webkit-box-shadow: rgba(0,0,0, 0.9) 0px 0px 8px; 
+width: 100%;
+height: 60px;
+margin-bottom: 10px;
+padding: 10px;
+font-weight: bold;
+font-size: 18px;
+}
+
+#post input[name=password] {
+width: 200px;
+margin-top: -15px;
+margin-left: 10px;
+}
+
+#post input[type=submit] {
+margin: 10px;
+width: 100%;
+}
+
+#post label{
+float: left;
+}
+
+#post label[for=text]{
+display: none;
+}
+
+#messages {
+}
+
+.message{
+font-size: 12px;
+margin-bottom: 10px;
+font-style:italic;
+
+}
+.message .time {
+font-weight: bold;
+}
+
+.message .address{
+font-weight: bold;
+}
+
+.message .address a{
+color: #1b1e26;
+text-decoration: none;
+}
+
+.message .address a:hover{
+text-decoration: underline;
+}
+
+.message .text {
+font-style:normal;
+	width: auto;
+	padding: 2px 2px;
+	background: #b6d051;
+	border: 0;
+	font-size: 14px;
+-webkit-border-radius: 5px;  
+    -moz-border-radius: 5px;
+font-weight: bold;
+line-height:18px;
+}
+
+#followings {
+margin-left: 140px;
+width: 290px;
+float: left;
+text-align: right;
+
+	padding: 1px 10px;
+	background: #b6d051;
+	border: 0;
+	font-size: 14px;
+-webkit-border-radius: 5px;  
+    -moz-border-radius: 5px;
+}
+
+
+#followings input[type=text],
+#followings input[type=password]{
+background: #bee87f;
+padding: 2px;
+margin-top: 10px;
+font-size: 14px;
+}
+
+#followings input[name=nick],
+#followings input[name=password]{
+width: 100px;
+}
+
+
+#followings input[name=address]{
+width: 180px;
+}
+
+#followings input[type=submit]{
+margin: 10px 0px 10px 0px;
+width: 250px;
+}
+
+#followings .following a{
+font-weight: bold;
+color: #1b1e26;
+text-decoration: none;
+}
+#followings .following a:hover{
+text-decoration: underline;
+}
+
+#followings h3{
+margin-top: 40px;
+margin-bottom: 0px;
+}
+
+
+#footer{
+padding: 20px;
+background: #1b1e26;
+color: #fff;
+clear: both;
+text-align: center;
+line-height: 20px;
+}
+
+#footer a{
+
+color: #fff;
+font-weight: bold;
+
+}
+
+

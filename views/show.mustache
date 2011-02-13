@@ -1,72 +1,73 @@
 {{>activate}}
 
-<h1>{{me}}</h1>
-
 <div id="fetch">
   <p class="text">This data was updated last time in <span>{{last_fetch_parsed}}</span>.
   <a href="/{{me}}/fetch">Update now</a>
 </div>
 
-<div id="post">
-  <form action="/{{me}}/post" method="post">
-    <div>
-      <label for="text">Text</label>
-      <textarea name="text"></textarea>
-    </div>
-    
-    <div>
-      <label for="password">Password</label>
-      <input type="password" name="password" />
-    </div>
-    
-    <div>
-      <input type="submit" value="post"/>
-    </div>
-  </form>
-</div>
-
-<div id="messages">
-  <h2>Messages</h2>
-  {{#messages}}
-  <div class="message">
-    On <span class="time">{{time_parsed}}</span> 
-    <span class="address">{{address}}</span>
-    said <span class="text">{{text}}</span>
-  </div>
-  {{/messages}}
-</div>
-
-<div id="followings">
-  <h2>Following</h2>
-  {{#following}}
-  <div class="following">
-    <span class="nick">{{nick}}</span>
-    <span class="address"><a href="/{{address}}">{{address}}</a></span>
-  </div>
-  {{/following}}
-  
-  <h3>Add new following</h3>
-  <div id="add-following">
-    <form action="/{{me}}/follow" method="post">
+<div id="col-left">
+  <div id="post">
+    <form action="/{{me}}/post" method="post">
       <div>
-        <label for="nick">Nick</label>
-        <input type="text" name="nick" />
+        <label for="text">Text</label>
+        <textarea name="text"></textarea>
       </div>
-      
-      <div>
-        <label for="address">Address</label>
-        <input type="text" name="address" />
-      </div>
-      
+    
       <div>
         <label for="password">Password</label>
         <input type="password" name="password" />
       </div>
-      
+    
       <div>
-        <input type="submit" value="follow" />
+        <input type="submit" value="post"/>
       </div>
     </form>
   </div>
+
+  <div id="messages">
+    <h2>Messages</h2>
+    {{#messages}}
+    <div class="message">
+      <span class="text">{{text}}</span>
+      by <span class="address"><a href="/{{address}}">{{address}}</a></span>
+      at <span class="time">{{time_parsed}}</span>
+    </div>
+    {{/messages}}
+  </div>
 </div>
 
+<div id="col-right">
+  <div id="followings">
+    <h2>Following</h2>
+    {{#following}}
+    <div class="following">
+      <span class="nick">{{nick}}</span>
+      <span class="address"><a href="/{{address}}">{{address}}</a></span>
+    </div>
+    {{/following}}
+  
+    <h3>Add new following</h3>
+    <div id="add-following">
+      <form action="/{{me}}/follow" method="post">
+        <div>
+          <label for="nick">Nick</label>
+          <input type="text" name="nick" />
+        </div>
+      
+        <div>
+          <label for="address">Address</label>
+          <input type="text" name="address" />
+        </div>
+      
+        <div>
+          <label for="password">Password</label>
+          <input type="password" name="password" />
+        </div>
+      
+        <div>
+          <input type="submit" value="follow" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,8 @@
 <div id="activate">
   <h2>Change the active user</h2>
   <form action="/show" method="get">
-    <div>
-      <label for="thimbl_user">Thimbl user</label>
-      <input type="text" name="thimbl_user" />
-    </div>
-    
-    <div>
-      <input type="submit" />
-    </div>
+    <label for="thimbl_user">Thimbl user</label>
+    <input type="text" name="thimbl_user" value="{{me}}" />
+    <input type="submit" value="active user" />
   </form>
 </div>

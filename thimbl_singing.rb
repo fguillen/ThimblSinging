@@ -12,6 +12,8 @@ class ThimblSinging < Sinatra::Base
     :templates => "#{File.dirname(__FILE__)}/views/"
   }
   
+  set :public, "#{File.dirname(__FILE__)}/public"
+  
   # activate
   get '/' do
     mustache :new
@@ -36,7 +38,7 @@ class ThimblSinging < Sinatra::Base
     @me = thimbl.me
     @messages = thimbl.messages.reverse
     @following = thimbl.following
-    @last_fetch = File.atime "#{ThimblSinging.caches_path}/#{ThimblSinging.to_filename params[:thimbl_user]}.json"
+    @last_fetch = File.mtime "#{ThimblSinging.caches_path}/#{ThimblSinging.to_filename params[:thimbl_user]}.json"
     
     mustache :show
   end
