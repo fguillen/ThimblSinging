@@ -49,3 +49,9 @@ Any time you can change the user active, fill the field and push **active user**
     http://thimblsinging.fernandoguillen.info/<thimbl_user>/follow?nick=<nick>&address=<address>&password=<password> (POST)
     
 
+# TODO
+
+* better design.
+* add password to the cookie: 'remember' check, 'forgot' link.
+* layout for mobile devices.
+
