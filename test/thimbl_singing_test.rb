@@ -32,8 +32,10 @@ class ThimblSingingTest < Test::Unit::TestCase
     thimbl = Thimbl::Base.new
     thimbl.data = JSON.load File.read "#{File.dirname(__FILE__)}/fixtures/me_at_thimbl.net.json"
     ThimblSinging.expects( :charge_thimbl ).with( 'me@thimbl.net' ).returns( thimbl )
-    File.expects( :mtime ).returns( Time.utc 2010, 1, 2, 3, 4, 5 )
+    File.stubs( :mtime ).returns( Time.utc 2010, 1, 2, 3, 4, 5 )
     visit '/me@thimbl.net'
+    
+    # File.open( '/tmp/exit.html', 'w' ) { |f| f.write response.body }
     
     # activate form
     assert_have_selector 'div#activate > form input[name=thimbl_user]'
@@ -46,6 +48,9 @@ class ThimblSingingTest < Test::Unit::TestCase
     
     # post form
     assert_have_selector 'div#post > form textarea[name=text]'
+    
+    # last message
+    assert_have_selector 'div#last-message', :content => 'testing 3'
     
     # messages
     assert_have_selector 'div#messages > .message > .time', :content => 'Wed,  2 Feb at 15:23:39'
@@ -152,5 +157,19 @@ class ThimblSingingTest < Test::Unit::TestCase
     Thimbl::Base.any_instance.expects( :fetch ).twice
     ThimblSinging.expects( :save_cache )
     ThimblSinging.charge_thimbl 'me@thimbl.net'
+  end
+  
+  def test_know_users
+    caches_path = "#{File.dirname(__FILE__)}/fixtures/known_users_caches"
+    ThimblSinging.stubs( :caches_path ).returns caches_path
+    File.expects( :mtime ).with( "#{File.dirname(__FILE__)}/fixtures/known_users_caches/one_at_thimbl.net.json" ).returns( Time.utc 2010, 1, 2, 3, 4, 5 )
+    File.expects( :mtime ).with( "#{File.dirname(__FILE__)}/fixtures/known_users_caches/two_at_thimbl.net.json" ).returns( Time.utc 2010, 1, 2, 3, 4, 6 )
+
+    known_users = ThimblSinging.known_users
+
+    assert_equal 'one@thimbl.net', known_users.first['address']
+    assert_equal '20100102030405', known_users.first['last_fetch'].strftime('%Y%m%d%H%M%S')
+    assert_equal 'two@thimbl.net', known_users.last['address']
+    assert_equal '20100102030406', known_users.last['last_fetch'].strftime('%Y%m%d%H%M%S')
   end
 end

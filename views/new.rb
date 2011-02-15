@@ -1,6 +1,6 @@
 class ThimblSinging
   module Views
-    class New < Mustache
+    class New < Layout
     end
   end
 end

@@ -1,16 +1,20 @@
 class ThimblSinging
   module Views
-    class Show < Mustache
+    class Show < Layout
       def messages
-        @messages
+        @thimbl.messages.reverse
       end
       
       def me
-        @me
+        @thimbl.me
+      end
+      
+      def last_message
+        @thimbl.messages.reverse.first
       end
       
       def following
-        @following
+        @thimbl.following
       end
       
       def time_parsed

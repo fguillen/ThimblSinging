@@ -16,6 +16,7 @@ class ThimblSinging < Sinatra::Base
   
   # activate
   get '/' do
+    @known_users = ThimblSinging.known_users
     mustache :new
   end
   
@@ -33,12 +34,9 @@ class ThimblSinging < Sinatra::Base
 
   # show
   get '/:thimbl_user' do
-    thimbl = ThimblSinging.charge_thimbl params[:thimbl_user]
-    
-    @me = thimbl.me
-    @messages = thimbl.messages.reverse
-    @following = thimbl.following
-    @last_fetch = File.mtime "#{ThimblSinging.caches_path}/#{ThimblSinging.to_filename params[:thimbl_user]}.json"
+    @thimbl = ThimblSinging.charge_thimbl params[:thimbl_user]
+    @last_fetch = ThimblSinging.last_fetch params[:thimbl_user]
+    @known_users = ThimblSinging.known_users
     
     mustache :show
   end
@@ -93,13 +91,28 @@ class ThimblSinging < Sinatra::Base
   def self.load_cache( thimbl_user )
     cache_path = "#{ThimblSinging.caches_path}/#{ThimblSinging.to_filename thimbl_user}.json"
     return nil  unless File.exists? cache_path
-    JSON.load File.read cache_path
+    return JSON.load File.read cache_path
   end
 
   def self.save_cache( thimbl_user, data )
     FileUtils.mkdir( ThimblSinging.caches_path )  unless File.exists? ThimblSinging.caches_path
     cache_path = "#{ThimblSinging.caches_path}/#{ThimblSinging.to_filename thimbl_user}.json"
     File.open( cache_path, 'w' ) { |f| f.write data.to_json }
+  end
+  
+  def self.last_fetch( thimbl_user )
+    File.mtime "#{ThimblSinging.caches_path}/#{ThimblSinging.to_filename thimbl_user}.json"
+  end
+  
+  def self.known_users
+    result = []
+    Dir["#{ThimblSinging.caches_path}/*_at_*.json"].each do |cache_path|
+      known_user_user_name = JSON.load( File.read cache_path )['me']
+      known_user_last_fetch = ThimblSinging.last_fetch known_user_user_name
+      result << { 'address' => known_user_user_name, 'last_fetch' => known_user_last_fetch }
+    end
+    
+    return result
   end
   
   def self.caches_path

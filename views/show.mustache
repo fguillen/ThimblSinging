@@ -23,9 +23,19 @@
       </div>
     </form>
   </div>
+  
+  <div id="last-message">
+    {{#last_message}}
+    <div class="message">
+      <span class="text">{{text}}</span>
+      by <span class="address"><a href="/{{address}}">{{address}}</a></span>
+      at <span class="time">{{time_parsed}}</span>
+    </div>
+    {{/last_message}}
+  </div>
 
   <div id="messages">
-    <h2>Messages</h2>
+    <h2>Time line</h2>
     {{#messages}}
     <div class="message">
       <span class="text">{{text}}</span>
@@ -69,5 +79,8 @@
         </div>
       </form>
     </div>
-  </div>
+  </div> <!-- following -->
+  
+  {{>known_users}}
+  
 </div>

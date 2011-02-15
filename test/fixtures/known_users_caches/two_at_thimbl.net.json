@@ -1,0 +1,26 @@
+{ "me" : "two@thimbl.net",
+  "plans" : { "dk@telekommunisten.org" : { "address" : "dk@telekommunisten.org",
+          "following" : [ { "address" : "as@telekommunisten.org",
+                "nick" : "anthony"
+              }
+            ],
+          "messages" : [],
+          "name" : "Dmytri Kleiner",
+          "properties" : { "email" : "dk@telekommunisten.net",
+              "mobile" : "",
+              "website" : "http://www.thimbl.net"
+            },
+          "replies" : {  }
+        },
+      "me@thimbl.net" : { "address" : "me@thimbl.net",
+          "following" : [],
+          "messages" : [],
+          "name" : "Fernando Guillen",
+          "properties" : { "email" : "fguillen.mail@gmail.com",
+              "mobile" : "N/A",
+              "website" : "fernandoguillen.info"
+            },
+          "replies" : {  }
+        }
+    }
+}
