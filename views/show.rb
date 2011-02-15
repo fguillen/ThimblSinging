@@ -10,7 +10,7 @@ class ThimblSinging
       end
       
       def last_message
-        @thimbl.messages.reverse.first
+        messages.select { |e| e['address'] == me }.first
       end
       
       def following
