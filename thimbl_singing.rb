@@ -2,10 +2,12 @@ require 'rubygems'
 require 'sinatra/base'
 require 'thimbl'
 require 'mustache/sinatra'
+require 'net/ssh'
 
 ROOT_PATH = File.dirname(__FILE__)
 
 class ThimblSinging < Sinatra::Base
+  enable :sessions
   register Mustache::Sinatra
   set :mustache, {
     :views     => "#{File.dirname(__FILE__)}/views/",
@@ -14,10 +16,33 @@ class ThimblSinging < Sinatra::Base
   
   set :public, "#{File.dirname(__FILE__)}/public"
   
-  # activate
+  # root
   get '/' do
-    @known_users = ThimblSinging.known_users
+    load_view_variables
     mustache :new
+  end
+  
+  post '/login' do
+    user      = params[:user].split('@')[0]
+    server    = params[:user].split('@')[1]
+    password  = params[:password] || ""
+    
+    begin
+      Net::SSH.start(server, user, :password => password) {}
+      session[:user] = params[:user]
+      session[:password] = params[:password]
+      redirect "/#{session[:user]}"
+    rescue Net::SSH::AuthenticationFailed, SocketError, Errno::ECONNREFUSED
+      @message = "Error trying to validate user :/"
+      load_view_variables
+      mustache :new
+    end
+  end
+  
+  get '/logout' do
+    session[:user] = nil
+    session[:password] = nil
+    redirect '/'
   end
   
   # redirect to show
@@ -36,8 +61,8 @@ class ThimblSinging < Sinatra::Base
   get '/:thimbl_user' do
     @thimbl = ThimblSinging.charge_thimbl params[:thimbl_user]
     @last_fetch = ThimblSinging.last_fetch params[:thimbl_user]
-    @known_users = ThimblSinging.known_users
     
+    load_view_variables
     mustache :show
   end
   
@@ -54,7 +79,7 @@ class ThimblSinging < Sinatra::Base
   # post
   post '/:thimbl_user/post' do
     thimbl = ThimblSinging.charge_thimbl params[:thimbl_user]
-    thimbl.post!( params[:text], params[:password] )
+    thimbl.post!( params[:text], session[:password] )
     ThimblSinging.save_cache( thimbl.me, thimbl.data )
     
     redirect "/#{params[:thimbl_user]}"
@@ -62,8 +87,9 @@ class ThimblSinging < Sinatra::Base
   
   # follow
   post '/:thimbl_user/follow' do
+    puts "XXX: pass: #{session[:password]}"
     thimbl = ThimblSinging.charge_thimbl params[:thimbl_user]
-    thimbl.follow!( params[:nick], params[:address], params[:password] )
+    thimbl.follow!( params[:nick], params[:address], session[:password] )
     thimbl.fetch
     ThimblSinging.save_cache( thimbl.me, thimbl.data )
     
@@ -81,6 +107,11 @@ class ThimblSinging < Sinatra::Base
     end
     
     return thimbl
+  end
+  
+  def load_view_variables
+    @known_users = ThimblSinging.known_users
+    @session = session
   end
 
   # TODO: use better slugger

@@ -3,6 +3,13 @@
   {{#known_users}}
   <div class="following">
     <span class="address"><a href="/{{address}}">{{address}}</a></span>
+    {{#logged?}}
+    <form action="/{{user}}/follow" method="post" class="following-form">
+      <input type="hidden" name="nick" value="" />
+      <input type="hidden" name="address" value="{{address}}" />
+      <input type="submit" value="follow"/>
+    </form>
+    {{/logged?}}
   </div>
   {{/known_users}}
 </div>

@@ -36,7 +36,7 @@ border-bottom: 1px solid #1b1e26;
 background: transparent;
 padding: 5px 5px 0px 5px;
 font-weight: bold;
-font-size: 24px;
+font-size: 18px;
 }
 
 textarea {
@@ -62,21 +62,70 @@ font-size: 80px;
 margin-top: 10px;
 }
 
-#activate {
-text-align: center;
+#login, #logged{
 background: #b6d051;
 padding: 10px;
 margin-bottom: 10px;
 }
 
-#activate h2 {
-display: none;
+#logged {
+  text-align: right;
 }
 
-#activate input[type=text] {
-width: 400px;
+#logged strong{
+  font-weight: bold;
+}
+
+#logged a{
+  color: black;
+  text-decoration: none;
+}
+
+#logged a:hover{
+  text-decoration: underline;
+}
+
+#login{
+  text-align: center;
+}
+
+#login h2 {
+font-size: 24px;
+font-weight: bold;
+}
+
+#login input[type=text] {
 margin: 0px 10px;
 }
+
+#login input#password {
+width: 150px;
+}
+
+#login input#user {
+width: 350px;
+}
+
+#listening-to {
+  margin-top: 10px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+#listening-to h2{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#message p{
+  text-align: center;
+  background-color: orange;
+  margin: 10px 00px;
+  padding: 10px;
+  font-weight: bold;
+}
+
 
 #fetch {
 text-align: center;
@@ -130,14 +179,8 @@ font-weight: bold;
 font-size: 18px;
 }
 
-#post input[name=password] {
-width: 180px;
-margin-top: -15px;
-margin-left: 10px;
-}
-
 #post input[type=submit] {
-margin: 10px 0px 10px 270px;
+margin: 0px 0px 0px 270px;
 width: 180px;
 }
 
@@ -206,7 +249,7 @@ line-height: 30px;
 #known-users {
 width: 400px;
 text-align: right;
-padding: 1px 10px;
+padding: 10px;
 background: #b6d051;
 border: 0;
 font-size: 14px;
@@ -254,13 +297,24 @@ margin-top: 40px;
 margin-bottom: 0px;
 }
 
+.following-form {
+  display: inline;
+}
+
+.following-form input[type=submit] {
+  padding: 1px;
+  font-size: 10px;
+  width: 60px !important;
+  margin: 0px !important;
+}
+
 #known-users {
 margin-top: 10px;
 padding-bottom: 10px;
 margin-bottom: 10px;
 }
 
-#new #known-users{
+#root #known-users{
 width: 100%;
 padding: 10px 0px;
 text-align: center;

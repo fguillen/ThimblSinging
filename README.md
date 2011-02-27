@@ -6,6 +6,14 @@ Is a very simple web service for the [thimbl protocol](http://thimbl.net)
 
 [Thimbl Singing](http://thimblsinging.fernandoguillen.info)
 
+# Install
+
+    git clone git://github.com/fguillen/ThimblSinging.git
+    cd ThimblSinging
+    bundle install
+    rackup
+    open http://localhost:9292
+
 # Instructions
 
 ## Active User
@@ -51,7 +59,11 @@ Any time you can change the user active, fill the field and push **active user**
 
 # TODO
 
+* unfollow option
 * better design.
-* add password to the cookie: 'remember' check, 'forgot' link.
 * layout for mobile devices.
+* Use the full *followings* lists to build a proper *known users* lists
+* The cache is not working well.. we should cache all the users and his followings but save the plans of the followings in diferents files, so we reuse cache and incress the *known users* list. If this works then the double .fetch is not needed.
+* check if the user is a real user before cache it or show it
+
 

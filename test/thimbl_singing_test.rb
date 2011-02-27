@@ -17,11 +17,24 @@ class ThimblSingingTest < Test::Unit::TestCase
     ThimblSinging.new
   end
 
-  def test_root
-    visit '/'
-    assert_have_selector 'div#activate > form input[name=thimbl_user]'
+  def test_root_not_logged
+    get '/'
+    assert_have_selector 'div#login > form input[name=user]'
   end
 
+  def test_root_logged
+    session[:user] = 'wadus'
+    get '/'
+    assert_have_selector 'div#login > form input[name=user]'
+  end
+  
+  def test_login
+    Net::SSH.expects(:start).with('thimbl.net', 'user', :password => 'pass').returns(true)
+    get '/login', :user => 'user@thimbl.net', :password => 'pass'
+    assert_equal 'user@thimbl.net', last_response.session[:user]
+    assert_equal 'pass', session[:pass]
+  end
+  
   def test_show_with_out_parameter
     visit '/show?thimbl_user=me@thimbl.net'
     assert last_response.redirect?

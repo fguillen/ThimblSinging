@@ -11,6 +11,12 @@
         <h1>Thimbl Singing</h1>
       </div>
       
+      <div id="message">
+        {{#message}}
+          <p>{{message}}</p>
+        {{/message}}
+      </div>
+      
       {{{yield}}}
       
       <div id="footer">
@@ -28,6 +34,8 @@
 
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-21394543-1']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
       _gaq.push(['_trackPageview']);
 
       (function() {
