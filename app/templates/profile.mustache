@@ -1,0 +1,46 @@
+{{>user_header}}
+
+<div id="fetch">
+  <p class="text">This data was updated last time in <span>{{last_fetch_parsed}}</span>.
+  <a href="/{{#user}}{{address}}{{/user}}/fetch">Update now</a>
+</div>
+
+<div id="col-left">
+  {{#user}}
+  <div id="profile">
+    <h2 class="name">{{#properties}}{{name}}{{/properties}}</h2>
+    <h3 class="address">{{address}}</h3>
+    <h4 class="bio">"{{#properties}}{{bio}}{{/properties}}"</h4>
+    
+    <div class="properties">
+      <dl>
+      {{#properties_list}}
+        <dt>{{key}}</dt> <dd>{{#activate_links}}{{value}}{{/activate_links}}</dd>
+      {{/properties_list}}
+      </dl>
+    </div>
+    
+    <div class="clear"></div>
+    
+    {{>following_link}}
+  </div>
+  {{/user}}
+
+  <div id="messages">
+    <h2>Messages</h2>
+    {{#messages}}
+      {{>message}}
+    {{/messages}}
+  </div>
+</div>
+
+<div id="col-right">
+  <div id="followings">
+    <h2>Following</h2>
+    
+    {{>following_list}}
+  </div> <!-- following -->
+  
+  {{>known_users}}
+  
+</div>

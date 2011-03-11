@@ -1,0 +1,59 @@
+{{>user_header}}
+
+<div id="fetch">
+  <p class="text">This data was updated last time in <span>{{last_fetch_parsed}}</span>.
+  <a href="/timeline_fetch">Update now</a>
+</div>
+
+<div id="col-left">
+  {{#logged?}}
+  <div id="post">
+    <form action="/post" method="post">
+      <div>
+        <label for="text">Text</label>
+        <textarea name="text"></textarea>
+      </div>
+    
+      <div>
+        <input type="submit" value="post"/>
+      </div>
+    </form>
+  </div>
+  {{/logged?}}
+  
+  <div id="last-message">
+    {{#last_message}}
+      {{>message}}
+    {{/last_message}}
+  </div>
+
+  <div id="messages">
+    <h2>Timeline</h2>
+    {{#timeline}}
+      {{>message}}
+    {{/timeline}}
+  </div>
+</div>
+
+<div id="col-right">
+  <div id="followings">
+    <h2>Following</h2>
+    
+    {{>following_list}}
+    
+    {{#logged?}}
+    <h3>Add new following</h3>
+    <div id="add-following">
+      <form action="/follow" method="post" class="following-form">
+        <input type="hidden" name="nick" value="" />
+        <label for="address">Address</label>
+        <input type="text" name="address" />
+        <input type="submit" value="follow" />
+      </form>
+    </div>
+    {{/logged?}}
+  </div> <!-- following -->
+  
+  {{>known_users}}
+  
+</div>

@@ -1,4 +1,4 @@
 .rvmrc
 .bundle
-caches
+/caches
 webrat.log

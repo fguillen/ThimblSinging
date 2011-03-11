@@ -1,0 +1,19 @@
+{{>user_header}}
+
+<div id="fetch">
+  <p class="text">This data was updated last time in <span>{{last_fetch_parsed}}</span>.
+  <a href="/global_timeline_fetch">Update now</a>
+</div>
+
+<div id="col-left">
+  <div id="messages">
+    <h2>Global Timeline</h2>
+    {{#timeline}}
+      {{>message}}
+    {{/timeline}}
+  </div>
+</div>
+
+<div id="col-right">
+  {{>known_users}}
+</div>

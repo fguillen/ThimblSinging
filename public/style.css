@@ -17,10 +17,16 @@ font-size: 40px;
 margin: 10px 0px 10px 0px;
 }
 
+a {
+  color: #1e1e1e;
+}
+
 h3 {
 font-size: 20px;
 margin: 10px 0px 10px 0px;
 }
+
+.clear{ clear: both; }
 
 #main {
 width: 900px;
@@ -39,19 +45,23 @@ font-weight: bold;
 font-size: 18px;
 }
 
-textarea {
-border: 1px solid #1b1e26;
-}
-
 input[type=submit] {
 width: auto;
 padding: 5px 15px;
-background: #1b1e26;
 border: 0;
 font-size: 14px;
 color: #FFFFFF;
 -webkit-border-radius: 5px;
 -moz-border-radius: 5px;
+border-radius: 5px;
+
+background-color: #1e1e1e;
+}
+
+input[type=submit]:hover {
+  -moz-box-shadow: #1e1e1e 0px 0px 4px;
+  -webkit-box-shadow: #1e1e1e 0px 0px 4px;
+  box-shadow: #1e1e1e 0px 0px 4px;
 }
 
 
@@ -59,34 +69,42 @@ color: #FFFFFF;
 #header h1 {
 text-align: center;
 font-size: 80px;
-margin-top: 10px;
-}
-
-#login, #logged{
-background: #b6d051;
-padding: 10px;
+margin-top: 5px;
 margin-bottom: 10px;
 }
 
-#logged {
-  text-align: right;
-}
-
-#logged strong{
-  font-weight: bold;
-}
-
-#logged a{
-  color: black;
+#header h1 a {
+  color: #000;
   text-decoration: none;
 }
 
-#logged a:hover{
-  text-decoration: underline;
+#login, #logged {
+text-align: right;
 }
 
-#login{
-  text-align: center;
+#login {
+  margin-bottom: 10px;
+}
+
+#logged{
+  font-size: 12px;
+}
+
+#logged strong {
+font-weight: bold;
+}
+
+#logged a {
+color: black;
+text-decoration: none;
+}
+
+#logged a:hover {
+text-decoration: underline;
+}
+
+#login {
+text-align: center;
 }
 
 #login h2 {
@@ -102,36 +120,57 @@ margin: 0px 10px;
 width: 150px;
 }
 
-#login input#user {
+#login input#address {
 width: 350px;
 }
 
-#listening-to {
-  margin-top: 10px;
-  background-color: black;
-  color: white;
-  padding: 10px;
+#profile {
 }
 
-#listening-to h2{
-  font-size: 18px;
+#profile .name{
+  font-size: 32px;
   font-weight: bold;
 }
 
-#message p{
-  text-align: center;
-  background-color: orange;
-  margin: 10px 00px;
-  padding: 10px;
+#profile .address{
+  margin-top: -10px;
+  font-size: 14px;
   font-weight: bold;
+}
+
+#profile .bio {
+  margin-top: -5px;
+  font-style: italic;
+}
+
+#profile .properties{
+  font-size: 12px;
+  margin: 10px 0px 5px 0px;
+}
+
+#profile .properties dt{
+  float: left;
+  margin-right: 3px;
+}
+
+#profile .properties dd{
+  font-style: italic;
+}
+
+
+#message p {
+text-align: center;
+background-color: orange;
+margin: 10px 00px;
+padding: 10px;
+font-weight: bold;
 }
 
 
 #fetch {
-text-align: center;
-background: #b6d051;
-padding: 5px;
-margin-bottom: 10px;
+text-align: right;
+margin-bottom: 20px;
+font-size: 12px;
 }
 
 #fetch span {
@@ -149,38 +188,69 @@ text-decoration: underline;
 }
 
 #col-left {
-
 width: 450px;
 float: left;
 }
 
 #col-right {
-
 width: 400px;
 margin-left: 30px;
 float: left;
 }
 
 #post {
-width: 100%;
-box-shadow: rgba(0,0,0, 0.9) 0px 0px 8px;
--moz-box-shadow: rgba(0,0,0, 0.9) 0px 0px 8px;
--webkit-box-shadow: rgba(0,0,0, 0.9) 0px 0px 8px;
+box-shadow: rgba(0,0,0, 0.9) 0px 0px 2px;
+-moz-box-shadow: rgba(0,0,0, 0.9) 0px 0px 2px;
+-webkit-box-shadow: rgba(0,0,0, 0.9) 0px 0px 2px;
 padding: 10px;
 }
 
-#post textarea {
+#post:hover {
+box-shadow: rgba(0,0,0, 0.9) 0px 0px 8px;
+-moz-box-shadow: rgba(0,0,0, 0.9) 0px 0px 8px;
+-webkit-box-shadow: rgba(0,0,0, 0.9) 0px 0px 8px;
 
-width: 430px;
-height: 60px;
+
+-webkit-transition: all .2s ease-out;
+-moz-transition: all .2s ease-out;
+-o-transition: all .2s ease-out;
+transition: all .2s ease-out;
+}
+
+#post:hover textarea {
+  border: 1px solid #1e1e1e;
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+}
+
+#post input[type=submit] {
+  background-color: #aaa;
+}
+
+#post:hover input[type=submit] {
+  background-color: #1e1e1e;
+  -webkit-transition: background-color 5s ease-out;
+  -moz-transition: background-color 5s ease-out;
+  -o-transition: background-color 5s ease-out;
+  transition: background-color 5s ease-out;
+}
+
+#post textarea {
+  width: 95%;
+  height: 40px;
 margin-bottom: 10px;
 padding: 10px;
 font-weight: bold;
 font-size: 18px;
+
+border: 1px solid #aaa;
+
 }
 
 #post input[type=submit] {
-margin: 0px 0px 0px 270px;
+margin: 0px 0px 0px 250px;
 width: 180px;
 }
 
@@ -196,10 +266,42 @@ display: none;
 }
 
 .message {
+background: #fff;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+
+-moz-box-shadow: #BBB 2px 5px 10px;
+-webkit-box-shadow: #BBB 2px 5px 10px;
+box-shadow: #BBB 2px 5px 10px;
+
 font-size: 12px;
-margin-bottom: 10px;
 font-style: italic;
+padding: 10px 15px;
+margin-bottom: 10px;
 }
+
+.message:hover {
+
+-moz-box-shadow: #777 0px 0px 2px;
+-webkit-box-shadow: #777 0px 0px 2px;
+box-shadow: #777 0px 0px 2px;
+
+-webkit-transition: all .2s ease-out;
+-moz-transition: all .2s ease-out;
+-o-transition: all .2s ease-out;
+transition: all .2s ease-out;
+}
+
+.message a {
+  color: #1E1E1E;
+  font-weight: normal;
+}
+
+.message .properties {
+color: #aaa;
+}
+
 .message .time {
 font-weight: bold;
 }
@@ -209,7 +311,7 @@ font-weight: bold;
 }
 
 .message .address a {
-color: #1b1e26;
+color: #aaa;
 text-decoration: none;
 }
 
@@ -217,17 +319,21 @@ text-decoration: none;
 text-decoration: underline;
 }
 
+.message:hover .address a {
+color: #555;
+-webkit-transition: all .4s ease-out;
+-moz-transition: all .4s ease-out;
+-o-transition: all .4s ease-out;
+transition: all .4s ease-out;
+}
+
+
 .message .text {
 font-style: normal;
-width: auto;
-padding: 2px 2px;
-background: #b6d051;
-border: 0;
 font-size: 14px;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
 font-weight: bold;
 line-height: 18px;
+margin-bottom: 5px;
 }
 
 #last-message {
@@ -235,9 +341,7 @@ margin-top: 10px;
 line-height: 20px;
 }
 
-#last-message .text{
-font-weight: normal;
-padding: 2px 10px;
+#last-message .text {
 font-size: 24px;
 line-height: 30px;
 }
@@ -250,7 +354,6 @@ line-height: 30px;
 width: 400px;
 text-align: right;
 padding: 10px;
-background: #b6d051;
 border: 0;
 font-size: 14px;
 -webkit-border-radius: 5px;
@@ -260,7 +363,6 @@ font-size: 14px;
 
 #followings input[type=text],
 #followings input[type=password] {
-background: #bee87f;
 padding: 2px;
 margin-top: 10px;
 font-size: 14px;
@@ -297,16 +399,29 @@ margin-top: 40px;
 margin-bottom: 0px;
 }
 
-.following-form {
-  display: inline;
+.following-form,
+.unfollowing-form {
+display: inline;
+}
+
+.following-form input[type=submit],
+.unfollowing-form input[type=submit] {
+padding: 1px 1px 1px 14px;
+font-size: 10px;
+width: 60px !important;
+margin: 0px !important;
+
+background-repeat: no-repeat;
+background-position: left top;
 }
 
 .following-form input[type=submit] {
-  padding: 1px;
-  font-size: 10px;
-  width: 60px !important;
-  margin: 0px !important;
+background-image: url('/plus_mini.png');
 }
+.unfollowing-form input[type=submit] {
+background-image: url('/minus_mini.png');
+}
+
 
 #known-users {
 margin-top: 10px;
@@ -314,25 +429,23 @@ padding-bottom: 10px;
 margin-bottom: 10px;
 }
 
-#root #known-users{
+#root #known-users {
 width: 100%;
 padding: 10px 0px;
 text-align: center;
-
 }
 
 
 #footer {
 padding: 20px;
-background: #1b1e26;
-color: #fff;
+color: #1b1e26;
 clear: both;
 text-align: center;
 line-height: 20px;
 }
 
 #footer a {
-color: #fff;
+color: #1b1e26;
 font-weight: bold;
 }
 

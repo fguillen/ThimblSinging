@@ -2,13 +2,20 @@
 <html>
   <head>
     <title>Thimbl Singing</title>
+    <link rel="shortcut icon" href="/favicon.png" />
     <link rel="stylesheet" type="text/css" href="/reset.css">
     <link rel="stylesheet" type="text/css" href="/style.css">
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $('.message .text a').attr('target', '_blank');
+      })
+    </script>
   </head>
   <body>
     <div id="main">
       <div id="header">
-        <h1>Thimbl Singing</h1>
+        <h1><a href="/">Thimbl Singing</a></h1>
       </div>
       
       <div id="message">

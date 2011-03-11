@@ -1,0 +1,29 @@
+{
+    "bio": "User Bio",
+    "following": [
+        {
+            "address": "one@thimbl.net",
+            "nick": "mike"
+        },
+        {
+            "address": "two@thimbl.net",
+            "nick": "rico"
+        }
+    ],
+    "messages": [
+        {
+            "text": "message 1",
+            "time": "20101102124412"
+        },
+        {
+            "text": "message 2",
+            "time": "20100706125120"
+        }
+    ],
+    "name": "User Name",
+    "properties": {
+        "email": "user email",
+        "mobile": "user mobile",
+        "website": "user website"
+    }
+} 

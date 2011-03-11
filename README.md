@@ -16,12 +16,12 @@ Is a very simple web service for the [thimbl protocol](http://thimbl.net)
 
 # Instructions
 
-## Active User
+## Sign in
 Go to the root url:
 
     http://thimblsinging.fernandoguillen.info
     
-Insert your **thimbl user account** and press **active user**, it will carry you to the *show user* page.
+Insert your **thimbl user account** and your **password** and press **login**, it will carry you to your *timeline* page.
 
 ## Show User
 
@@ -36,34 +36,19 @@ If the server has already the info of this user *cached* then it will response w
 ## Update Cached Info
 
 Any time you can push in the **Update Now** link to update the info of this user.
-
-## Post
-
-Be sure the *active user* is your user, fill the textarea and the **Password** field and push **post**
-
-## Follow
-
-Be sure the *active user* is your user, fill the textarea and the **Password** field and push **post**
-
-## Change Active User
-
-Any time you can change the user active, fill the field and push **active user**.
-
-# API
-
-    http://thimblsinging.fernandoguillen.info/<thimbl_user>.json (GET)
-    http://thimblsinging.fernandoguillen.info/<thimbl_user>/fetch (GET)
-    http://thimblsinging.fernandoguillen.info/<thimbl_user>/post?text=<text>&password=<password> (POST)
-    http://thimblsinging.fernandoguillen.info/<thimbl_user>/follow?nick=<nick>&address=<address>&password=<password> (POST)
     
 
 # TODO
 
-* unfollow option
 * better design.
 * layout for mobile devices.
 * Use the full *followings* lists to build a proper *known users* lists
-* The cache is not working well.. we should cache all the users and his followings but save the plans of the followings in diferents files, so we reuse cache and incress the *known users* list. If this works then the double .fetch is not needed.
-* check if the user is a real user before cache it or show it
+* modifications of the personal details like: **bio**, ...
+* Not update the an user's cache if it is less than X minutes old. (trying to avoid re-re-re-fetching)
+* Detect links in messages.
+* Support for flash messages
+* Detect thimbl addresses in message texts.
+
+
 
 

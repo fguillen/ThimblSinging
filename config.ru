@@ -1,2 +1,2 @@
-require 'thimbl_singing'
-run ThimblSinging
+require 'app/thimbl_singing'
+run ThimblSinging::App

@@ -1,0 +1,20 @@
+{
+    "bio": "User B Bio",
+    "following": [],
+    "messages": [
+        {
+            "text": "user b message 1",
+            "time": "20101105124112"
+        },
+        {
+            "text": "user b message 2",
+            "time": "20100707125220"
+        }
+    ],
+    "name": "User B Name",
+    "properties": {
+        "email": "user b email",
+        "mobile": "user b mobile",
+        "website": "user b website"
+    }
+}

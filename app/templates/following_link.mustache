@@ -1,0 +1,16 @@
+{{#logged?}}
+  {{^is_me?}}
+    {{^following?}}
+      <form action="/follow" method="post" class="following-form">
+        <input type="hidden" name="address" value="{{address}}" />
+        <input type="submit" value="follow" />
+      </form>
+    {{/following?}}
+    {{#following?}}
+      <form action="/unfollow" method="post" class="unfollowing-form">
+        <input type="hidden" name="address" value="{{address}}" />
+        <input type="submit" value="unfollow" />
+      </form>
+    {{/following?}}
+  {{/is_me?}}
+{{/logged?}}

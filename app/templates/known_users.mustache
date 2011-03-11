@@ -1,0 +1,12 @@
+<div id="known-users">
+  <h2>Known users</h2>
+  {{#known_users}}
+  <div class="following">
+    <span class="address">{{#properties}}{{name}}{{/properties}} <a href="/{{address}}">{{address}}</a></span>
+    {{>following_link}}
+  </div>
+  {{/known_users}}
+  
+  <br />
+  <a id="global-timeline-link" href="/global_timeline">Listen to the Global Timeline</a>
+</div>
